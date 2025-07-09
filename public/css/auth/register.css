@@ -1,0 +1,102 @@
+/* General Reset */
+
+  
+  body {
+    
+  }
+
+  .body-container {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container-c {
+    max-width: 1000px;
+    width: 90%;
+    display: flex;
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    margin: 40px 0;
+  }
+  
+  /* Left Side – Form */
+  .form-section {
+    flex: 1;
+    padding: 40px;
+    background-color: #000;
+  }
+  
+  .form-section h2 {
+    margin-bottom: 20px;
+    color: #D10024;
+  }
+  
+  form input,
+  form select,
+  form button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  form input,
+  form select {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+  
+  form button {
+    background-color: #D10024;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #a9001b;
+  }
+  
+  /* Right Side – Side Content */
+  .side-content {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(135deg, #D10024, #850013);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .side-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .side-content p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container-c {
+      flex-direction: column;
+    }
+  
+    .form-section,
+    .side-content {
+      padding: 30px 20px;
+    }
+  }
+  

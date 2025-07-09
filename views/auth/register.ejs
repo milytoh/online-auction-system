@@ -1,0 +1,52 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/auth/register.css">
+
+</head>
+
+<body>
+    
+<%- include('../partials/navigation') %>
+		<!-- /HEADER -->
+
+		<div class="body-container">
+			<link rel="stylesheet" href="/css/style.css">
+
+<div class="container-c">
+  <div class="form-section">
+    <h2>Create Account</h2>
+    <form method="POST" action="/register">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <select name="role">
+        <option value="buyer">Buyer</option>
+        <option value="seller">Seller</option>
+      </select>
+      <button type="submit">Register</button>
+    </form>
+
+    <!-- Login link -->
+    <p style="margin-top: 10px; color: #aaa;">
+      Already have an account? <a href="/login" style="color: #D10024; text-decoration: none;">Login here</a>
+    </p>
+  </div>
+
+  <div class="side-content">
+    <h3>Join the Auction World</h3>
+    <p>Sell your items or bid on exclusive listings. Become part of a fast-growing marketplace.</p>
+  </div>
+</div>
+
+		</div>
+
+		
+
+		
+		
+
+
+<!-- FOOTER -->
+
+</body>
+
+
