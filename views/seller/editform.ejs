@@ -1,0 +1,40 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+
+<body>
+    
+<%- include('../partials/navigation') %>
+		<!-- /HEADER -->
+
+        <div class="form-container">
+            <div class="form-section">
+              <h2>Edit Auction</h2>
+              <form action="/edit/<%= auction.id %>" method="POST">
+                <input type="text" name="title" value="<%= auction.title %>" required>
+                <textarea name="description" rows="5" required><%= auction.description %></textarea>
+                <input type="datetime-local" name="end_time" value="<%= new Date(auction.end_time).toISOString().slice(0,16) %>" required>
+                <button type="submit">Update Auction</button>
+              </form>
+              
+            </div>
+          
+            <div class="side-content">
+              <h3>Edit</h3>
+              <p>Update your product for auction and watch the bids come in. Add a good description and image for better visibility.</p>
+            </div>
+          </div>
+
+
+
+
+		
+		
+
+
+<!-- FOOTER -->
+
+</body>
+
+

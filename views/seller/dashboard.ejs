@@ -14,20 +14,29 @@
 
 <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
   <thead>
-    <tr style="color: #D10024;">
+    <tr>
       <th>Title</th>
       <th>Price</th>
       <th>Status</th>
       <th>Ends</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% auctions.forEach(a => { %>
-      <tr style="color: #fff;">
+      <tr>
         <td><%= a.title %></td>
         <td>₦<%= a.current_price %></td>
         <td><%= a.status %></td>
         <td><%= new Date(a.end_time).toLocaleString() %></td>
+        <td>
+          <% if (a.status === 'active') { %>
+            <a href="/edit/<%= a.id %>" class="btn edit">Edit</a>
+          <% } %>
+          <form action="/delete/<%= a.id %>" method="POST" style="display:inline;">
+            <button type="submit" class="btn delete" onclick="return confirm('Are you sure?')">Delete</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </tbody>

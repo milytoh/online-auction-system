@@ -42,6 +42,16 @@
       </ul>
     <% } %>
   </div>
+  <p><strong>Ends:</strong> <%= new Date(auction.end_time).toLocaleString() %></p>
+
+<% if (auction.status === 'closed') { %>
+  <% if (winner) { %>
+    <p class="winner">🏆 <strong>Winner:</strong> <%= winner %></p>
+  <% } else { %>
+    <p class="winner">No winner — no bids were placed.</p>
+  <% } %>
+<% } %>
+
 
 
 <%- include('../partials/footer') %>

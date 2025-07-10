@@ -26,4 +26,14 @@ router.post(
   sellerController.addAuction
 );
 
+// Edit form
+router.get('/edit/:id', isSeller, sellerController.editForm);
+
+// Submit edit
+router.post('/edit/:id', isSeller, sellerController.updateAuction);
+
+// Delete auction
+router.post('/delete/:id', isSeller, sellerController.deleteAuction);
+
+
 module.exports = router;
