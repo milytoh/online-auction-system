@@ -1,0 +1,24 @@
+
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/seller.css">
+</head>
+<body>
+    
+<%- include('../partials/navigation') %>
+
+<h2>Available Auctions</h2>
+
+<div class="auction-list">
+  <% auctions.forEach(a => { %>
+    <div class="auction-card">
+      <img src="/images/<%= a.image %>" alt="item" />
+      <h3><%= a.title %></h3>
+      <p>₦<%= a.current_price %></p>
+      <a href="/auction/<%= a.id %>">View</a>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>
+
+</body>

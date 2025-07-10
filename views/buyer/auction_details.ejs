@@ -1,0 +1,52 @@
+
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/seller.css">
+</head>
+<body>
+    
+<%- include('../partials/navigation') %>
+
+
+<div class="auction-detail-container">
+    <div class="auction-image">
+      <img src="/images/<%= auction.image %>" alt="<%= auction.title %>">
+    </div>
+  
+    <div class="auction-info">
+      <h2><%= auction.title %></h2>
+      <p class="desc"><%= auction.description %></p>
+  
+      <p><strong>Current Price:</strong> ₦<%= auction.current_price %></p>
+      <p><strong>Ends:</strong> <%= new Date(auction.end_time).toLocaleString() %></p>
+  
+      <% if (user && user.role === 'buyer') { %>
+        <form action="/auction/<%= auction.id %>/bid" method="POST" class="bid-form">
+          <input type="number" step="0.01" name="amount" placeholder="Your Bid" required>
+          <button type="submit">Place Bid</button>
+        </form>
+      <% } else { %>
+        <p class="login-reminder">Login as a buyer to place a bid.</p>
+      <% } %>
+    </div>
+  </div>
+  
+  <div class="bid-history">
+    <h3>Bid History</h3>
+    <% if (bids.length === 0) { %>
+      <p>No bids yet.</p>
+    <% } else { %>
+      <ul>
+        <% bids.forEach(b => { %>
+          <li><strong><%= b.bidder_name %>:</strong> ₦<%= b.amount %> — <%= new Date(b.bid_time).toLocaleString() %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+
+
+<%- include('../partials/footer') %>
+
+
+
+
+</body>
