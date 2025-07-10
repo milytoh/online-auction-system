@@ -154,12 +154,21 @@ textarea.input {
   font-size: larger;
 }
 
+.logo-img {
+  height: 100px;
+}
 
 
-.logout-btn {
+.logout-btn { 
   color: #D10024;
   font-size: medium;
   font-weight: 500;
+  background-color: #f3eced;
+}
+
+.logout-btn:hover {
+ color: #E4E7ED;
+ background-color: #D10024;
 }
 
 .input-number .qty-up, .input-number .qty-down {

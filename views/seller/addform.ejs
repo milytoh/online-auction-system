@@ -1,0 +1,47 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+
+<body>
+    
+<%- include('../partials/navigation') %>
+		<!-- /HEADER -->
+
+        <div class="form-container">
+            <div class="form-section">
+              <h2>Create New Auction</h2>
+          
+              <form action="/add-auction" method="POST" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Auction Title" required>
+          
+                <textarea name="description" placeholder="Enter description..." rows="5" required></textarea>
+          
+                <input type="number" name="start_price" placeholder="Starting Price (₦)" step="0.01" required>
+          
+                <input type="datetime-local" name="end_time" required>
+          
+                <input type="file" name="image" accept="image/*" required>
+          
+                <button type="submit">Post Auction</button>
+              </form>
+            </div>
+          
+            <div class="side-content">
+              <h3>List Your Product</h3>
+              <p>Upload your product for auction and watch the bids come in. Add a good description and image for better visibility.</p>
+            </div>
+          </div>
+
+
+
+
+		
+		
+
+
+<!-- FOOTER -->
+
+</body>
+
+

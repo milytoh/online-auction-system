@@ -1,0 +1,166 @@
+/* Dashboard & Tables */
+h2 {
+    color: #D10024;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    color: #D10024;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+  }
+  
+  th {
+    background-color: #D10024;
+    color: white;
+  }
+  
+  td {
+    color: #eee;
+  }
+  
+  tr:hover {
+    background-color: #1a1a1a;
+  }
+  
+  /* Auction Form */
+  form {
+    margin-top: 20px;
+  }
+  
+  form input,
+  form textarea,
+  form select {
+    background-color: #1e1e1e;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  form input[type="file"] {
+    background-color: #000;
+  }
+  
+  form button {
+    background-color: #D10024;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #a9001b;
+  }
+
+
+  .form-container {
+    max-width: 1000px;
+    width: 90%;
+    display: flex;
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    margin: 40px auto;
+    flex-wrap: wrap;
+  }
+  
+  .form-section {
+    flex: 1;
+    padding: 40px;
+    background-color: #000;
+  }
+  
+  .side-content {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(135deg, #D10024, #850013);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  form input,
+  form textarea,
+  form select {
+    background-color: #1e1e1e;
+    border: none;
+    color: #fff;
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #D10024;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #a9001b;
+  }
+  
+ 
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    table, th, td {
+      font-size: 14px;
+    }
+
+    .container {
+        flex-direction: column;
+      }
+    
+      .form-section,
+      .side-content {
+        padding: 30px 20px;
+      }
+  
+
+    form input,
+    form textarea,
+    form select,
+    form button {
+      font-size: 14px;
+    }
+  }
+  

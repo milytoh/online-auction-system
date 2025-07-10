@@ -1,0 +1,47 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+
+<body>
+    
+<%- include('../partials/navigation') %>
+		<!-- /HEADER -->
+
+		
+<h2>Welcome, <%= user.name %> (Seller Dashboard)</h2>
+<a href="/add-auction" style="color: #D10024;">+ Create New Auction</a>
+
+<table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+  <thead>
+    <tr style="color: #D10024;">
+      <th>Title</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Ends</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% auctions.forEach(a => { %>
+      <tr style="color: #fff;">
+        <td><%= a.title %></td>
+        <td>₦<%= a.current_price %></td>
+        <td><%= a.status %></td>
+        <td><%= new Date(a.end_time).toLocaleString() %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+
+
+
+		
+		
+
+
+<!-- FOOTER -->
+
+</body>
+
+
