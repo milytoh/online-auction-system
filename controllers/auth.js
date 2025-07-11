@@ -10,13 +10,11 @@ exports.getRegister = (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
-
-  
   res.render("auth/login", {
     title: "Login",
     user: req.session.user,
-    errorMessage: req.flash('error'),
-    successMessage: req.flash('success')
+    errorMessage: req.flash("error"),
+    successMessage: req.flash("success"),
   });
 };
 
@@ -28,7 +26,9 @@ exports.register = async (req, res) => {
     ]);
     if (existing.length > 0) {
       req.flash("error", " email already exist!");
-      return res.redirect("/register");
+      return req.session.save(() => {
+        res.redirect("/register");
+      });
     }
 
     const hashed = await bcrypt.hash(password, 10);
@@ -36,8 +36,10 @@ exports.register = async (req, res) => {
       "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
       [name, email, hashed, role]
     );
-    req.flash('success', 'Registration successful login to continue')
-    res.redirect("/login");
+    req.flash("success", "Registration successful login to continue");
+    return req.session.save(() => {
+      res.redirect("/register");
+    });
   } catch (err) {
     console.log(err);
     res.status(500).send("Error registering user.");
@@ -50,14 +52,21 @@ exports.login = async (req, res) => {
     const [rows] = await db.execute("SELECT * FROM users WHERE email = ?", [
       email,
     ]);
-    if (rows.length === 0) return res.send("User not found.");
+    if (rows.length === 0) {
+      req.flash("error", "user not found");
+      req.session.save(() => {
+        return res.redirect("/login");
+      });
+    }
 
     const user = rows[0];
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      req.flash('error', 'invalid email or password');
-      res.redirect('/');
-    } 
+      req.flash("error", "invalid email or password");
+      return req.session.save(() => {
+        res.redirect("/login");
+      });
+    }
 
     req.session.user = {
       id: user.id,

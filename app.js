@@ -2,8 +2,11 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path");
 
+
 const app = express();
 const flash = require("connect-flash");
+const MySQLStore = require("express-mysql-session")(session);
+const db = require('./models/db')
 
 const auctionRoute = require("./routes/auction");
 const authRoute = require("./routes/auth");
@@ -15,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
+// Session store config
+const sessionStore = new MySQLStore({}, db); //
+
 // Session setup
 app.use(
   session({
@@ -22,7 +28,7 @@ app.use(
       "4d8f2a8304b1c19ab4b8a87497f0cd87ee8d6a7a0a2cfb6dd0e41d6dd66a34dc...",
     resave: false,
     saveUninitialized: false,
-
+    store: sessionStore,
     cookie: { maxAge: 1000 * 60 * 60 * 2 },
   })
 );
