@@ -21,9 +21,7 @@ app.use(
       "4d8f2a8304b1c19ab4b8a87497f0cd87ee8d6a7a0a2cfb6dd0e41d6dd66a34dc...",
     resave: false,
     saveUninitialized: false,
-    // cookie: {
-    //   maxAge: 1000 * 60 * 60, // 1 hour
-    // },
+
     cookie: { maxAge: 1000 * 60 * 60 * 2 },
   })
 );

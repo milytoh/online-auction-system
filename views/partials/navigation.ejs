@@ -25,7 +25,7 @@
         <div class="col-md-3">
           <div class="header-logo">
             <a href="/" class="logo">
-              <img src="/img/logoblack.png" alt=""  class="logo-img"/>
+              <img src="/img/logoblack.png" alt="" class="logo-img" />
             </a>
           </div>
         </div>
@@ -35,7 +35,6 @@
         <div class="col-md-6">
           <div class="header-search">
             <form>
-              
               <input class="input" placeholder="Search here" />
               <button class="search-btn">Search</button>
             </form>
@@ -98,4 +97,28 @@
     <!-- container -->
   </div>
   <!-- /MAIN HEADER -->
+  <nav id="navigation">
+    <!-- container -->
+    <div class="container">
+      <!-- responsive-nav -->
+      <div id="responsive-nav">
+        <!-- NAV -->
+        <ul class="main-nav nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/auctions">Hot Auction Deals</a></li>
+          <% if (user && user.role === 'buyer') { %>
+          <li><a href="/my-wins">🏆 My Wins</a></li>
+          <% } %>
+          <% if (user && user.role === 'buyer') { %>
+            <li><a href="/my-bids">💸 My Bids</a></li>
+          <% } %>
+          
+
+        </ul>
+        <!-- /NAV -->
+      </div>
+      <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+  </nav>
 </header>

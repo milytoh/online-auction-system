@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('../partials/navigation') %>
+
+<div class="container">
+  <h2>My Bids 💸</h2>
+
+  <% if (auctions.length === 0) { %>
+    <p>You haven’t placed any bids yet.</p>
+  <% } else { %>
+    <div class="auction-list">
+      <% auctions.forEach(a => { %>
+        <div class="product">
+          <div class="product-img">
+            <img src="/images/<%= a.image %>" alt="<%= a.title %>">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Auction by: <%= a.seller_name %></p>
+            <h3 class="product-name"><a href="/auction/<%= a.id %>"><%= a.title %></a></h3>
+            <h4 class="product-price">Your Bid: ₦<%= a.my_bid.toLocaleString() %></h4>
+            <p>Highest Bid: ₦<%= a.highest_bid.toLocaleString() %></p>
+            <p>Status: <%= a.status === 'active' ? 'Active' : 'Closed' %></p>
+            <% if (a.status === 'active' && a.my_bid === a.highest_bid) { %>
+              <p class="winner-badge" style="background: green;">You're currently leading 🥇</p>
+            <% } else if (a.status === 'active') { %>
+              <p class="winner-badge" style="background: #D10024;">Outbid 😢</p>
+            <% } else { %>
+              <p class="winner-badge" style="background: #333;">Auction Ended</p>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
+</body>

@@ -12,4 +12,11 @@ router.get("/auction/:id", buyerController.viewAuction);
 // Place a bid
 router.post("/auction/:id/bid", isAuth, buyerController.placeBid);
 
+router.get("/my-wins", isAuth, buyerController.myWins);
+
+router.get("/my-bids", isAuth, buyerController.myBids);
+
+
+
+
 module.exports = router;

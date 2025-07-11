@@ -1,0 +1,33 @@
+<%- include('../partials/head') %>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('../partials/navigation') %>
+
+<div class="container">
+  <h2>My Won Auctions 🏆</h2>
+
+  <% if (auctions.length === 0) { %>
+    <p>You haven't won any auctions yet.</p>
+  <% } else { %>
+    <div class="auction-list">
+      <% auctions.forEach(a => { %>
+        <div class="product">
+          <div class="product-img">
+            <img src="/images/<%= a.image %>" alt="<%= a.title %>">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Won from: <%= a.seller_name %></p>
+            <h3 class="product-name"><a href="/auction/<%= a.id %>"><%= a.title %></a></h3>
+            <h4 class="product-price">₦<%= a.current_price.toLocaleString() %></h4>
+            <p class="winner-badge">🏅 You are the winner</p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
+</body>

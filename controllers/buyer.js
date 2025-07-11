@@ -88,3 +88,52 @@ exports.placeBid = async (req, res) => {
     console.log(err);
   }
 };
+
+
+exports.myWins = async (req, res) => {
+  const buyerId = req.session.user.id;
+
+  const [wonAuctions] = await db.execute(
+    `
+    SELECT a.*, u.name AS seller_name 
+    FROM auctions a 
+    JOIN users u ON a.seller_id = u.id
+    WHERE a.winner_id = ?
+    ORDER BY a.end_time DESC
+  `,
+    [buyerId]
+  );
+
+  res.render("buyer/my-wins", {
+    title: 'My Wins',
+    user: req.session.user,
+    auctions: wonAuctions,
+
+  });
+};
+
+
+exports.myBids = async (req, res) => {
+  const buyerId = req.session.user.id;
+
+  const [bids] = await db.execute(
+    `
+    SELECT DISTINCT a.*, u.name AS seller_name,
+      (SELECT MAX(amount) FROM bids WHERE auction_id = a.id) AS highest_bid,
+      (SELECT amount FROM bids WHERE auction_id = a.id AND bidder_id = ? ORDER BY amount DESC LIMIT 1) AS my_bid
+    FROM bids b
+    JOIN auctions a ON b.auction_id = a.id
+    JOIN users u ON a.seller_id = u.id
+    WHERE b.bidder_id = ?
+    ORDER BY a.end_time DESC
+  `,
+    [buyerId, buyerId]
+  );
+
+  res.render("buyer/my-bids", {
+    title: 'My Bids',
+    user: req.session.user,
+    auctions: bids,
+
+  });
+};
