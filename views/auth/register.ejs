@@ -12,7 +12,12 @@
 			
 
 <div class="container-c">
+  
+  
   <div class="form-section">
+    <% if (errorMessage[0]) { %>
+      <div class="flash error"><%= errorMessage %></div>
+    <% } %>
     <h2>Create Account</h2>
     <form method="POST" action="/register">
       <input type="text" name="name" placeholder="Full Name" required>

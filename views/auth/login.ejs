@@ -12,8 +12,15 @@
 			<link rel="stylesheet" href="/css/style.css">
 
 <div class="container-c">
+  
   <div class="form-section">
     <h2>Login</h2>
+    <% if (errorMessage[0]) { %>
+      <div class="flash error"><%= errorMessage %></div>
+    <% } %>
+    <% if (successMessage[0]) { %>
+      <div class="flash success"><%= successMessage %></div>
+    <% } %>
     <form method="POST" action="/login">
       <input type="email" name="email" placeholder="Email Address" required>
       <input type="password" name="password" placeholder="Password" required>

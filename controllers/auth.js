@@ -1,23 +1,24 @@
 const bcrypt = require("bcryptjs");
 const db = require("../models/db");
 
-
 exports.getRegister = (req, res, next) => {
-
-  console.log(req.session.user)
-    
-    res.render("auth/register", {
-      title: "Register",
-      user: req.session.user,
-    });
-}
+  res.render("auth/register", {
+    title: "Register",
+    user: req.session.user,
+    errorMessage: req.flash("error"),
+  });
+};
 
 exports.getLogin = (req, res, next) => {
-  res.render('auth/login', {
-    title: 'Login',
-    user: req.session.user
-  })
-}
+
+  
+  res.render("auth/login", {
+    title: "Login",
+    user: req.session.user,
+    errorMessage: req.flash('error'),
+    successMessage: req.flash('success')
+  });
+};
 
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -25,16 +26,20 @@ exports.register = async (req, res) => {
     const [existing] = await db.execute("SELECT * FROM users WHERE email = ?", [
       email,
     ]);
-    if (existing.length > 0) return res.send("Email already registered.");
+    if (existing.length > 0) {
+      req.flash("error", " email already exist!");
+      return res.redirect("/register");
+    }
 
     const hashed = await bcrypt.hash(password, 10);
     await db.execute(
       "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
       [name, email, hashed, role]
     );
+    req.flash('success', 'Registration successful login to continue')
     res.redirect("/login");
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).send("Error registering user.");
   }
 };
@@ -49,7 +54,10 @@ exports.login = async (req, res) => {
 
     const user = rows[0];
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.send("Invalid password.");
+    if (!match) {
+      req.flash('error', 'invalid email or password');
+      res.redirect('/');
+    } 
 
     req.session.user = {
       id: user.id,

@@ -3,6 +3,7 @@ const session = require("express-session");
 const path = require("path");
 
 const app = express();
+const flash = require("connect-flash");
 
 const auctionRoute = require("./routes/auction");
 const authRoute = require("./routes/auth");
@@ -25,6 +26,8 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 2 },
   })
 );
+
+app.use(flash());
 
 // Routes
 app.use(auctionRoute);
